@@ -40,4 +40,18 @@ class Food {
         }
       }
     }
+    garden(){
+      background(garden,550,500);
+
+    }
+    bedroom(){
+      background(this.bedroom,550,500);
+
+    }
+    washroom(){
+      background(this.washroom,550,500);
+
+    }
+    
+       
 }

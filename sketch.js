@@ -6,7 +6,7 @@ var foodObj;
 var gameState,readState;
 
 function preload(){
-
+sadDog = loadImage("Images/Dog.png");
 happyDog=loadImage("Images/happy dog.png");
 garden=loadImage("Images/Garden.png");
 washroom=loadImage("Images/Wash Room.png");
@@ -48,13 +48,14 @@ function setup() {
 
 function draw() {
   currentTime=hour();
-  if(currentTime==(lastFed+1)){
+  console.log(currentTime)
+  if(currentTime==(lastFed)){
       update("Playing");
       foodObj.garden();
-   }else if(currentTime==(lastFed+2)){
+   }else if(currentTime==(lastFed+1)){
     update("Sleeping");
       foodObj.bedroom();
-   }else if(currentTime>(lastFed+2) && currentTime<=(lastFed+4)){
+   }else if(currentTime>(lastFed+1) && currentTime<=(lastFed+4)){
     update("Bathing");
       foodObj.washroom();
    }else{
@@ -85,7 +86,7 @@ function readStock(data){
 //function to update food stock and last fed time
 function feedDog(){
   dog.addImage(happyDog);
-
+  update("Playing")
   foodObj.updateFoodStock(foodObj.getFoodStock()-1);
   database.ref('/').update({
     Food:foodObj.getFoodStock(),
